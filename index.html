@@ -3,8 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Security Whisperer</title>
-  <meta name="description" content="Security Whisperer: a practical secure-by-design architecture framework with principles, patterns, controls, guardrails, and assurance." />
+  <title>Security Whisperer | Secure By Design Architecture</title>
+  <meta name="description" content="Security Whisperer is a practical secure-by-design architecture framework by Sangamitra Singh, covering principles, patterns, controls, guardrails, automation, and continuous assurance." />
+  <meta name="author" content="Sangamitra Singh" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#15202b" />
+  <link rel="canonical" href="https://sangamitra22.github.io/Security-Whisperer/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Security Whisperer" />
+  <meta property="og:description" content="A practical secure-by-design architecture framework with principles, patterns, controls, guardrails, and assurance." />
+  <meta property="og:url" content="https://sangamitra22.github.io/Security-Whisperer/" />
+  <meta property="og:image" content="https://sangamitra22.github.io/Security-Whisperer/Sanga_pic.jpeg" />
+  <meta name="twitter:card" content="summary_large_image" />
   <style>
     :root {
       --ink: #15202b;
@@ -19,14 +29,8 @@
       --shadow: 0 16px 40px rgba(21, 32, 43, .10);
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -34,362 +38,91 @@
       background: var(--bg);
       line-height: 1.6;
     }
-
-    a {
-      color: inherit;
+    a { color: inherit; }
+    a:focus-visible { outline: 3px solid rgba(15, 118, 110, .55); outline-offset: 3px; }
+    .wrap { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: 12px;
+      z-index: 100;
+      transform: translateY(-160%);
+      padding: 10px 14px;
+      background: var(--ink);
+      color: #fff;
+      border-radius: 8px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .18s ease;
     }
-
-    .wrap {
-      width: min(1180px, calc(100% - 48px));
-      margin: 0 auto;
-    }
-
+    .skip-link:focus { transform: translateY(0); }
     header {
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(247, 250, 249, .92);
+      background: rgba(247, 250, 249, .94);
       border-bottom: 1px solid var(--line);
       backdrop-filter: blur(14px);
     }
-
-    nav {
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 850;
-      letter-spacing: .2px;
-      white-space: nowrap;
-    }
-
-    .mark {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      border-radius: 12px;
-      background: var(--ink);
-      color: #fff;
-      font-weight: 900;
-    }
-
-    .links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 750;
-    }
-
-    .links a {
-      text-decoration: none;
-      padding: 8px 10px;
-      border-radius: 8px;
-    }
-
-    .links a:hover,
-    .links a:focus-visible {
-      background: #eaf3f0;
-      color: var(--ink);
-      outline: none;
-    }
-
-    .hero {
-      min-height: calc(100vh - 72px);
-      display: grid;
-      align-items: center;
-      padding: 72px 0 52px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.02fr .98fr;
-      gap: 44px;
-      align-items: center;
-    }
-
-    h1 {
-      margin: 0;
-      max-width: 760px;
-      font-size: clamp(46px, 7vw, 84px);
-      line-height: .94;
-      letter-spacing: 0;
-    }
-
-    .lead {
-      max-width: 680px;
-      margin: 24px 0 0;
-      color: var(--muted);
-      font-size: 20px;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 32px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 46px;
-      padding: 0 18px;
-      border: 1px solid var(--ink);
-      border-radius: 8px;
-      font-weight: 850;
-      text-decoration: none;
-    }
-
-    .btn.primary {
-      background: var(--ink);
-      color: #fff;
-    }
-
-    .btn.secondary {
-      background: #fff;
-      color: var(--ink);
-    }
-
-    .hero-art {
-      width: 100%;
-      min-height: 420px;
-      display: grid;
-      place-items: center;
-    }
-
-    .section {
-      padding: 72px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .section h2 {
-      margin: 0 0 14px;
-      font-size: clamp(30px, 4vw, 48px);
-      line-height: 1.05;
-      letter-spacing: 0;
-    }
-
-    .section-intro {
-      max-width: 780px;
-      margin: 0 0 32px;
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 22px;
-      box-shadow: var(--shadow);
-    }
-
-    .card h3 {
-      margin: 0 0 8px;
-      font-size: 20px;
-      line-height: 1.2;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .tag {
-      display: inline-flex;
-      margin-bottom: 14px;
-      padding: 5px 9px;
-      border-radius: 999px;
-      background: #eaf3f0;
-      color: var(--teal);
-      font-size: 12px;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
-
-    .diagram {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 24px;
-      overflow-x: auto;
-      box-shadow: var(--shadow);
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-
-    .about-profile {
-      display: grid;
-      grid-template-columns: minmax(220px, 320px) 1fr;
-      gap: 24px;
-      align-items: stretch;
-      margin-bottom: 18px;
-    }
-
-    .profile-photo {
-      position: relative;
-      min-height: 360px;
-      overflow: hidden;
-      background: #eaf3f0;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-    }
-
-    .profile-photo img {
-      width: 100%;
-      height: 100%;
-      min-height: 360px;
-      display: block;
-      object-fit: cover;
-    }
-
-    .photo-placeholder {
-      position: absolute;
-      inset: 18px;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      border: 2px dashed rgba(15, 118, 110, .38);
-      border-radius: 8px;
-      color: var(--muted);
-      text-align: center;
-      font-weight: 750;
-    }
-
-    .profile-photo img[src="https://github.com/sangamitra22/Security-Whisperer/blob/main/Sanga_pic.jpeg"] + .photo-placeholder {
-      display: none;
-    }
-
-    .list {
-      margin: 0;
-      padding-left: 20px;
-      color: var(--muted);
-    }
-
-    .list li + li {
-      margin-top: 8px;
-    }
-
-    .resource-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    .resource {
-      display: block;
-      min-height: 112px;
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 18px;
-      text-decoration: none;
-      box-shadow: var(--shadow);
-    }
-
-    .resource:hover,
-    .resource:focus-visible {
-      border-color: var(--teal);
-      outline: none;
-    }
-
-    .resource strong {
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .resource span {
-      color: var(--muted);
-    }
-
-    footer {
-      padding: 40px 0;
-      background: var(--ink);
-      color: #fff;
-    }
-
-    footer p {
-      margin: 0;
-      color: #c8d6df;
-    }
+    nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 850; letter-spacing: .2px; text-decoration: none; white-space: nowrap; }
+    .mark { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px; background: var(--ink); color: #fff; font-weight: 900; }
+    .links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; color: var(--muted); font-size: 14px; font-weight: 750; }
+    .links a { text-decoration: none; padding: 8px 10px; border-radius: 8px; }
+    .links a:hover, .links a:focus-visible { background: #eaf3f0; color: var(--ink); outline: none; }
+    .hero { min-height: calc(100vh - 72px); display: grid; align-items: center; padding: 72px 0 52px; }
+    .hero-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: 44px; align-items: center; }
+    h1 { margin: 0; max-width: 760px; font-size: clamp(46px, 7vw, 84px); line-height: .94; letter-spacing: 0; }
+    .lead { max-width: 680px; margin: 24px 0 0; color: var(--muted); font-size: 20px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 18px; border: 1px solid var(--ink); border-radius: 8px; font-weight: 850; text-decoration: none; }
+    .btn.primary { background: var(--ink); color: #fff; }
+    .btn.secondary { background: #fff; color: var(--ink); }
+    .hero-art { width: 100%; min-height: 420px; display: grid; place-items: center; }
+    .section { padding: 72px 0; border-top: 1px solid var(--line); scroll-margin-top: 92px; }
+    .section h2 { margin: 0 0 14px; font-size: clamp(30px, 4vw, 48px); line-height: 1.05; letter-spacing: 0; }
+    .section-intro { max-width: 780px; margin: 0 0 32px; color: var(--muted); font-size: 18px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 22px; box-shadow: var(--shadow); }
+    .card h3 { margin: 0 0 8px; font-size: 20px; line-height: 1.2; }
+    .card p { margin: 0; color: var(--muted); }
+    .tag { display: inline-flex; margin-bottom: 14px; padding: 5px 9px; border-radius: 999px; background: #eaf3f0; color: var(--teal); font-size: 12px; font-weight: 900; text-transform: uppercase; }
+    .about-profile { display: grid; grid-template-columns: minmax(220px, 320px) 1fr; gap: 24px; align-items: stretch; margin-bottom: 18px; }
+    .profile-photo { overflow: hidden; background: #eaf3f0; border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); }
+    .profile-photo img { width: 100%; height: 100%; min-height: 360px; display: block; object-fit: cover; }
+    .diagram { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 24px; overflow-x: auto; box-shadow: var(--shadow); }
+    .list { margin: 0; padding-left: 20px; color: var(--muted); }
+    .list li + li { margin-top: 8px; }
+    .resource-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .resource { display: block; min-height: 112px; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 18px; text-decoration: none; box-shadow: var(--shadow); }
+    .resource:hover, .resource:focus-visible { border-color: var(--teal); outline: none; }
+    .resource strong { display: block; margin-bottom: 4px; }
+    .resource span { color: var(--muted); }
+    footer { padding: 40px 0; background: var(--ink); color: #fff; }
+    footer p { margin: 0; color: #c8d6df; }
 
     @media (max-width: 900px) {
-      nav {
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 16px 0;
-      }
-
-      .links {
-        justify-content: flex-start;
-      }
-
-      .hero-grid,
-      .grid,
-      .about-profile,
-      .two-col,
-      .resource-list {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        min-height: auto;
-        padding-top: 48px;
-      }
-
-      .hero-art {
-        min-height: 320px;
-      }
+      nav { align-items: flex-start; flex-direction: column; padding: 16px 0; }
+      .links { justify-content: flex-start; }
+      .hero-grid, .grid, .about-profile, .two-col, .resource-list { grid-template-columns: 1fr; }
+      .hero { min-height: auto; padding-top: 48px; }
+      .hero-art { min-height: 320px; }
+      .profile-photo img { max-height: 460px; }
     }
-
     @media (max-width: 540px) {
-      .wrap {
-        width: min(100% - 28px, 1180px);
-      }
-
-      .hero {
-        padding-top: 36px;
-      }
-
-      .section {
-        padding: 52px 0;
-      }
-
-      .card,
-      .diagram,
-      .resource {
-        padding: 18px;
-      }
+      .wrap { width: min(100% - 28px, 1180px); }
+      .hero { padding-top: 36px; }
+      .section { padding: 52px 0; }
+      .card, .diagram, .resource { padding: 18px; }
     }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <header>
     <nav class="wrap" aria-label="Primary navigation">
-      <a class="brand" href="#top" aria-label="Security Whisperer home">
+      <a class="brand" href="#main" aria-label="Security Whisperer home">
         <span class="mark">SW</span>
         <span>Security Whisperer</span>
       </a>
@@ -398,27 +131,23 @@
         <a href="#framework">Framework</a>
         <a href="#layers">Layers</a>
         <a href="#patterns">Patterns</a>
-        <a href="#governance">Governance</a>
+        <a href="#controls">Controls</a>
         <a href="#resources">Resources</a>
       </div>
     </nav>
   </header>
 
-  <main id="top">
-    <section class="hero">
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-heading">
       <div class="wrap hero-grid">
         <div>
-          <h1>Security Whisperer</h1>
-          <p class="lead">
-            A practical guide to making solutions secure by design through reusable principles,
-            architecture patterns, controls, guardrails, automation, and continuous assurance.
-          </p>
+          <h1 id="hero-heading">Security Whisperer</h1>
+          <p class="lead">A practical guide to making solutions secure by design through reusable principles, architecture patterns, controls, guardrails, automation, and continuous assurance.</p>
           <div class="actions">
             <a class="btn primary" href="#framework">Explore Framework</a>
             <a class="btn secondary" href="#patterns">View Patterns</a>
           </div>
         </div>
-
         <div class="hero-art" aria-label="Friendly security architecture illustration">
           <svg width="100%" viewBox="0 0 620 480" role="img" aria-labelledby="hero-title hero-desc">
             <title id="hero-title">Security Whisperer illustration</title>
@@ -441,364 +170,145 @@
       </div>
     </section>
 
-    <section id="about" class="section">
+    <section id="about" class="section" aria-labelledby="about-heading">
       <div class="wrap">
-        <h2>About Me</h2>
-
+        <h2 id="about-heading">About Me</h2>
         <div class="about-profile">
           <div class="profile-photo">
-            <img src="profile.jpg" alt="Sangamitra Singh" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
-            <div class="photo-placeholder">
-              Add your photo as profile.jpg in the same folder as this HTML file.
-            </div>
+            <img src="Sanga_pic.jpeg" alt="Portrait of Sangamitra Singh" width="320" height="360" loading="eager" />
           </div>
-
           <article class="card">
             <span class="tag">Profile</span>
             <h3>Sangamitra Singh</h3>
-            <p>
-              Hi, my name is Sangamitra Singh. I am a Security and Solution Architecture
-              professional with over 20 years of experience delivering large-scale
-              technology and cyber security initiatives across banking, government, and
-              enterprise environments.
-            </p>
+            <p>Hi, my name is Sangamitra Singh. I am a Security and Solution Architecture professional with over 20 years of experience delivering large-scale technology and cyber security initiatives across banking, government, and enterprise environments.</p>
           </article>
         </div>
-
         <div class="two-col">
-          <article class="card">
-            <span class="tag">Experience</span>
-            <h3>Security And Solution Architecture</h3>
-            <p>
-              My background spans solution architecture, cloud security, security
-              monitoring, enterprise observability, risk management, security governance,
-              and cyber resilience. I have led complex transformation programs across AWS,
-              Azure, on-premises, and hybrid environments.
-            </p>
-          </article>
-
-          <article class="card">
-            <span class="tag">Leadership</span>
-            <h3>Enterprise Transformation</h3>
-            <p>
-              I work closely with business stakeholders, solution architects, security
-              teams, delivery partners, and vendors to design and implement secure,
-              scalable, and resilient solutions that support business outcomes.
-            </p>
-          </article>
+          <article class="card"><span class="tag">Experience</span><h3>Security And Solution Architecture</h3><p>My background spans solution architecture, cloud security, security monitoring, enterprise observability, risk management, security governance, and cyber resilience. I have led complex transformation programs across AWS, Azure, on-premises, and hybrid environments.</p></article>
+          <article class="card"><span class="tag">Leadership</span><h3>Enterprise Transformation</h3><p>I work closely with business stakeholders, solution architects, security teams, delivery partners, and vendors to design and implement secure, scalable, and resilient solutions that support business outcomes.</p></article>
         </div>
-
         <div class="grid" style="margin-top: 18px;">
-          <article class="card">
-            <span class="tag">Westpac</span>
-            <h3>Monitoring And Observability</h3>
-            <p>
-              Led architecture and engineering teams during the migration of over 300
-              applications to Splunk Cloud and drove enterprise monitoring and
-              observability initiatives.
-            </p>
-          </article>
-          <article class="card">
-            <span class="tag">Transport For NSW</span>
-            <h3>Cloud Security Uplift</h3>
-            <p>
-              Delivered cloud security monitoring uplift programs, security architecture
-              reviews, threat modelling, risk assessments, and monitoring capabilities
-              across critical transport services.
-            </p>
-          </article>
-          <article class="card">
-            <span class="tag">Motivation</span>
-            <h3>Practical Secure Delivery</h3>
-            <p>
-              I am passionate about embedding security by design principles into
-              architecture and delivery, building high-performing teams, and enabling
-              practical, risk-based decision making.
-            </p>
-          </article>
+          <article class="card"><span class="tag">Westpac</span><h3>Monitoring And Observability</h3><p>Led architecture and engineering teams during the migration of over 300 applications to Splunk Cloud and drove enterprise monitoring and observability initiatives.</p></article>
+          <article class="card"><span class="tag">Transport For NSW</span><h3>Cloud Security Uplift</h3><p>Delivered cloud security monitoring uplift programs, security architecture reviews, threat modelling, risk assessments, and monitoring capabilities across critical transport services.</p></article>
+          <article class="card"><span class="tag">Motivation</span><h3>Practical Secure Delivery</h3><p>I am passionate about embedding security by design principles into architecture and delivery, building high-performing teams, and enabling practical, risk-based decision making.</p></article>
         </div>
       </div>
     </section>
 
-    <section id="framework" class="section">
+    <section id="framework" class="section" aria-labelledby="framework-heading">
       <div class="wrap">
-        <h2>Secure By Design Framework</h2>
-        <p class="section-intro">
-          Secure by design is not a collection of isolated controls. It is a reusable
-          architecture framework that defines approved ways to build systems, required
-          controls, automated guardrails, and assurance processes.
-        </p>
-
+        <h2 id="framework-heading">Secure By Design Framework</h2>
+        <p class="section-intro">Secure by design is not a collection of isolated controls. It is a reusable architecture framework that defines approved ways to build systems, required controls, automated guardrails, and assurance processes.</p>
         <div class="grid">
-          <article class="card">
-            <span class="tag">Why</span>
-            <h3>Principles</h3>
-            <p>Zero Trust, Least Privilege, Defense in Depth, Secure by Default, Separation of Duties, Assume Breach, Data-Centric Security, Automation First, and Continuous Verification.</p>
-          </article>
-          <article class="card">
-            <span class="tag">How</span>
-            <h3>Patterns</h3>
-            <p>Approved architecture patterns for cloud, identity, applications, data, infrastructure, and integrations.</p>
-          </article>
-          <article class="card">
-            <span class="tag">Enforce</span>
-            <h3>Guardrails</h3>
-            <p>Policy-as-code, IaC scanning, cloud policies, admission controllers, continuous compliance scanning, and automated remediation.</p>
-          </article>
+          <article class="card"><span class="tag">Why</span><h3>Principles</h3><p>Zero Trust, Least Privilege, Defense in Depth, Secure by Default, Separation of Duties, Assume Breach, Data-Centric Security, Automation First, and Continuous Verification.</p></article>
+          <article class="card"><span class="tag">How</span><h3>Patterns</h3><p>Approved architecture patterns for cloud, identity, applications, data, infrastructure, and integrations.</p></article>
+          <article class="card"><span class="tag">Enforce</span><h3>Guardrails</h3><p>Policy-as-code, IaC scanning, cloud policies, admission controllers, continuous compliance scanning, and automated remediation.</p></article>
         </div>
       </div>
     </section>
 
-    <section id="layers" class="section">
+    <section id="layers" class="section" aria-labelledby="layers-heading">
       <div class="wrap">
-        <h2>Layered Security Architecture</h2>
-        <p class="section-intro">
-          Each layer should define security objectives, mandatory controls, approved
-          patterns, and prohibited patterns.
-        </p>
-
+        <h2 id="layers-heading">Layered Security Architecture</h2>
+        <p class="section-intro">Each layer should define security objectives, mandatory controls, approved patterns, and prohibited patterns.</p>
         <div class="diagram">
           <svg width="980" height="390" viewBox="0 0 980 390" role="img" aria-labelledby="layers-title layers-desc">
             <title id="layers-title">Layered security architecture model</title>
             <desc id="layers-desc">Business, application, integration, data, identity, infrastructure, and cloud platform layers.</desc>
             <g font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700">
-              <rect x="160" y="20" width="660" height="42" rx="8" fill="#f4b942" />
-              <text x="490" y="48" text-anchor="middle">Business Layer</text>
-              <rect x="160" y="70" width="660" height="42" rx="8" fill="#ffffff" stroke="#15202b" />
-              <text x="490" y="98" text-anchor="middle">Application Layer</text>
-              <rect x="160" y="120" width="660" height="42" rx="8" fill="#0f766e" />
-              <text x="490" y="148" text-anchor="middle" fill="#fff">Integration Layer</text>
-              <rect x="160" y="170" width="660" height="42" rx="8" fill="#ffffff" stroke="#15202b" />
-              <text x="490" y="198" text-anchor="middle">Data Layer</text>
-              <rect x="160" y="220" width="660" height="42" rx="8" fill="#2563eb" />
-              <text x="490" y="248" text-anchor="middle" fill="#fff">Identity Layer</text>
-              <rect x="160" y="270" width="660" height="42" rx="8" fill="#ef6f61" />
-              <text x="490" y="298" text-anchor="middle" fill="#fff">Infrastructure Layer</text>
-              <rect x="160" y="320" width="660" height="42" rx="8" fill="#15202b" />
-              <text x="490" y="348" text-anchor="middle" fill="#fff">Cloud Platform Layer</text>
+              <rect x="160" y="20" width="660" height="42" rx="8" fill="#f4b942" /><text x="490" y="48" text-anchor="middle">Business Layer</text>
+              <rect x="160" y="70" width="660" height="42" rx="8" fill="#fff" stroke="#15202b" /><text x="490" y="98" text-anchor="middle">Application Layer</text>
+              <rect x="160" y="120" width="660" height="42" rx="8" fill="#0f766e" /><text x="490" y="148" text-anchor="middle" fill="#fff">Integration Layer</text>
+              <rect x="160" y="170" width="660" height="42" rx="8" fill="#fff" stroke="#15202b" /><text x="490" y="198" text-anchor="middle">Data Layer</text>
+              <rect x="160" y="220" width="660" height="42" rx="8" fill="#2563eb" /><text x="490" y="248" text-anchor="middle" fill="#fff">Identity Layer</text>
+              <rect x="160" y="270" width="660" height="42" rx="8" fill="#ef6f61" /><text x="490" y="298" text-anchor="middle" fill="#fff">Infrastructure Layer</text>
+              <rect x="160" y="320" width="660" height="42" rx="8" fill="#15202b" /><text x="490" y="348" text-anchor="middle" fill="#fff">Cloud Platform Layer</text>
             </g>
           </svg>
         </div>
       </div>
     </section>
 
-    <section id="patterns" class="section">
+    <section id="patterns" class="section" aria-labelledby="patterns-heading">
       <div class="wrap">
-        <h2>Security Pattern Library</h2>
-        <p class="section-intro">
-          The strongest programs maintain a central pattern library where architects
-          can select approved blueprints with controls and guardrails already embedded.
-        </p>
-
+        <h2 id="patterns-heading">Security Pattern Library</h2>
+        <p class="section-intro">The strongest programs maintain a central pattern library where architects can select approved blueprints with controls and guardrails already embedded.</p>
         <div class="grid">
-          <article class="card">
-            <span class="tag">Cloud</span>
-            <h3>Secure Landing Zone</h3>
-            <p>Multi-account structure, central logging, security monitoring, segmentation, privileged access management, and policy enforcement.</p>
-          </article>
-          <article class="card">
-            <span class="tag">Identity</span>
-            <h3>Identity Control Plane</h3>
-            <p>SSO, MFA, conditional access, Privileged Identity Management, just-in-time administration, and risk-based authentication.</p>
-          </article>
-          <article class="card">
-            <span class="tag">Application</span>
-            <h3>Secure SDLC</h3>
-            <p>Threat modeling, SAST, dependency scanning, secrets management, container scanning, API security, and runtime monitoring.</p>
-          </article>
-          <article class="card">
-            <span class="tag">Infrastructure</span>
-            <h3>Secure Compute</h3>
-            <p>Hardened images, CIS baselines, EDR, patch management, configuration monitoring, approved images, and drift detection.</p>
-          </article>
-          <article class="card">
-            <span class="tag">Data</span>
-            <h3>Data Classification</h3>
-            <p>Public, Internal, Confidential, and Restricted data protected through encryption, DLP, key management, retention, and access reviews.</p>
-          </article>
-          <article class="card">
-            <span class="tag">Integration</span>
-            <h3>API Security</h3>
-            <p>API gateway, OAuth2/OIDC, mTLS, rate limiting, API inventory, schema validation, and no unauthenticated backend exposure.</p>
-          </article>
+          <article class="card"><span class="tag">Cloud</span><h3>Secure Landing Zone</h3><p>Multi-account structure, central logging, security monitoring, segmentation, privileged access management, and policy enforcement.</p></article>
+          <article class="card"><span class="tag">Identity</span><h3>Identity Control Plane</h3><p>SSO, MFA, conditional access, Privileged Identity Management, just-in-time administration, and risk-based authentication.</p></article>
+          <article class="card"><span class="tag">Application</span><h3>Secure SDLC</h3><p>Threat modeling, SAST, dependency scanning, secrets management, container scanning, API security, and runtime monitoring.</p></article>
+          <article class="card"><span class="tag">Infrastructure</span><h3>Secure Compute</h3><p>Hardened images, CIS baselines, EDR, patch management, configuration monitoring, approved images, and drift detection.</p></article>
+          <article class="card"><span class="tag">Data</span><h3>Data Classification</h3><p>Public, Internal, Confidential, and Restricted data protected through encryption, DLP, key management, retention, and access reviews.</p></article>
+          <article class="card"><span class="tag">Integration</span><h3>API Security</h3><p>API gateway, OAuth2/OIDC, mTLS, rate limiting, API inventory, schema validation, and no unauthenticated backend exposure.</p></article>
         </div>
       </div>
     </section>
 
-    <section id="controls" class="section">
+    <section id="controls" class="section" aria-labelledby="controls-heading">
       <div class="wrap">
-        <h2>Controls And Guardrails</h2>
-        <p class="section-intro">
-          Patterns guide architecture decisions. Guardrails enforce them automatically
-          and assurance processes verify that controls keep working over time.
-        </p>
-
+        <h2 id="controls-heading">Controls And Guardrails</h2>
+        <p class="section-intro">Patterns guide architecture decisions. Guardrails enforce them automatically and assurance processes verify that controls keep working over time.</p>
         <div class="two-col">
-          <article class="card">
-            <span class="tag">Control Catalog</span>
-            <h3>Map Controls To Domains</h3>
-            <ul class="list">
-              <li>Identity: MFA, SSO, PIM, and risk-based authentication.</li>
-              <li>Data: encryption, DLP, retention, and access reviews.</li>
-              <li>Application: SAST, dependency scanning, secrets scanning, and API security.</li>
-              <li>Infrastructure: EDR, patching, hardened images, and configuration monitoring.</li>
-              <li>Cloud: central logging, central monitoring, policy enforcement, and segmentation.</li>
-            </ul>
-          </article>
-          <article class="card">
-            <span class="tag">Automation</span>
-            <h3>Enforce At Scale</h3>
-            <ul class="list">
-              <li>Preventive: policy-as-code, IaC scanning, cloud policies, and admission controllers.</li>
-              <li>Detective: continuous compliance scanning, CSPM, SIEM monitoring, and drift detection.</li>
-              <li>Corrective: auto-remediation, automated quarantine, and access revocation.</li>
-            </ul>
-          </article>
+          <article class="card"><span class="tag">Control Catalog</span><h3>Map Controls To Domains</h3><ul class="list"><li>Identity: MFA, SSO, PIM, and risk-based authentication.</li><li>Data: encryption, DLP, retention, and access reviews.</li><li>Application: SAST, dependency scanning, secrets scanning, and API security.</li><li>Infrastructure: EDR, patching, hardened images, and configuration monitoring.</li><li>Cloud: central logging, central monitoring, policy enforcement, and segmentation.</li></ul></article>
+          <article class="card"><span class="tag">Automation</span><h3>Enforce At Scale</h3><ul class="list"><li>Preventive: policy-as-code, IaC scanning, cloud policies, and admission controllers.</li><li>Detective: continuous compliance scanning, CSPM, SIEM monitoring, and drift detection.</li><li>Corrective: auto-remediation, automated quarantine, and access revocation.</li></ul></article>
         </div>
       </div>
     </section>
 
-    <section id="reference-architectures" class="section">
+    <section id="reference-architectures" class="section" aria-labelledby="reference-heading">
       <div class="wrap">
-        <h2>Reusable Reference Architectures</h2>
-        <p class="section-intro">
-          Approved blueprints reduce design risk, speed delivery, and make secure by
-          design a repeatable engineering process.
-        </p>
-
+        <h2 id="reference-heading">Reusable Reference Architectures</h2>
+        <p class="section-intro">Approved blueprints reduce design risk, speed delivery, and make secure by design a repeatable engineering process.</p>
         <div class="diagram">
           <svg width="980" height="420" viewBox="0 0 980 420" role="img" aria-labelledby="ref-title ref-desc">
             <title id="ref-title">Reference architecture examples</title>
             <desc id="ref-desc">Three approved reference architecture paths for web applications, API platforms, and data platforms.</desc>
-            <defs>
-              <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-                <path d="M0,0 L0,6 L9,3 z" fill="#15202b" />
-              </marker>
-            </defs>
-            <g font-family="Inter, Arial, sans-serif">
-              <text x="165" y="36" text-anchor="middle" font-size="20" font-weight="800">Web Application</text>
-              <text x="490" y="36" text-anchor="middle" font-size="20" font-weight="800">API Platform</text>
-              <text x="815" y="36" text-anchor="middle" font-size="20" font-weight="800">Data Platform</text>
-              <g font-size="15" font-weight="700">
-                <rect x="72" y="62" width="186" height="42" rx="8" fill="#f4b942" /><text x="165" y="89" text-anchor="middle">Internet</text>
-                <rect x="72" y="126" width="186" height="42" rx="8" fill="#fff" stroke="#15202b" /><text x="165" y="153" text-anchor="middle">WAF</text>
-                <rect x="72" y="190" width="186" height="42" rx="8" fill="#0f766e" /><text x="165" y="217" text-anchor="middle" fill="#fff">Load Balancer</text>
-                <rect x="72" y="254" width="186" height="42" rx="8" fill="#2563eb" /><text x="165" y="281" text-anchor="middle" fill="#fff">Application</text>
-                <rect x="72" y="318" width="186" height="42" rx="8" fill="#15202b" /><text x="165" y="345" text-anchor="middle" fill="#fff">Database</text>
-
-                <rect x="397" y="62" width="186" height="42" rx="8" fill="#f4b942" /><text x="490" y="89" text-anchor="middle">Consumer</text>
-                <rect x="397" y="126" width="186" height="42" rx="8" fill="#0f766e" /><text x="490" y="153" text-anchor="middle" fill="#fff">API Gateway</text>
-                <rect x="397" y="190" width="186" height="42" rx="8" fill="#fff" stroke="#15202b" /><text x="490" y="217" text-anchor="middle">Service Mesh</text>
-                <rect x="397" y="254" width="186" height="42" rx="8" fill="#2563eb" /><text x="490" y="281" text-anchor="middle" fill="#fff">Microservices</text>
-
-                <rect x="722" y="62" width="186" height="42" rx="8" fill="#f4b942" /><text x="815" y="89" text-anchor="middle">Data Source</text>
-                <rect x="722" y="126" width="186" height="42" rx="8" fill="#0f766e" /><text x="815" y="153" text-anchor="middle" fill="#fff">Ingestion</text>
-                <rect x="722" y="190" width="186" height="42" rx="8" fill="#2563eb" /><text x="815" y="217" text-anchor="middle" fill="#fff">Data Lake</text>
-                <rect x="722" y="254" width="186" height="42" rx="8" fill="#15202b" /><text x="815" y="281" text-anchor="middle" fill="#fff">Analytics</text>
-              </g>
-              <g stroke="#15202b" stroke-width="3" marker-end="url(#arrow)">
-                <line x1="165" y1="104" x2="165" y2="126" />
-                <line x1="165" y1="168" x2="165" y2="190" />
-                <line x1="165" y1="232" x2="165" y2="254" />
-                <line x1="165" y1="296" x2="165" y2="318" />
-                <line x1="490" y1="104" x2="490" y2="126" />
-                <line x1="490" y1="168" x2="490" y2="190" />
-                <line x1="490" y1="232" x2="490" y2="254" />
-                <line x1="815" y1="104" x2="815" y2="126" />
-                <line x1="815" y1="168" x2="815" y2="190" />
-                <line x1="815" y1="232" x2="815" y2="254" />
-              </g>
+            <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#15202b" /></marker></defs>
+            <g font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700">
+              <text x="165" y="36" text-anchor="middle" font-size="20" font-weight="800">Web Application</text><text x="490" y="36" text-anchor="middle" font-size="20" font-weight="800">API Platform</text><text x="815" y="36" text-anchor="middle" font-size="20" font-weight="800">Data Platform</text>
+              <rect x="72" y="62" width="186" height="42" rx="8" fill="#f4b942" /><text x="165" y="89" text-anchor="middle">Internet</text><rect x="72" y="126" width="186" height="42" rx="8" fill="#fff" stroke="#15202b" /><text x="165" y="153" text-anchor="middle">WAF</text><rect x="72" y="190" width="186" height="42" rx="8" fill="#0f766e" /><text x="165" y="217" text-anchor="middle" fill="#fff">Load Balancer</text><rect x="72" y="254" width="186" height="42" rx="8" fill="#2563eb" /><text x="165" y="281" text-anchor="middle" fill="#fff">Application</text><rect x="72" y="318" width="186" height="42" rx="8" fill="#15202b" /><text x="165" y="345" text-anchor="middle" fill="#fff">Database</text>
+              <rect x="397" y="62" width="186" height="42" rx="8" fill="#f4b942" /><text x="490" y="89" text-anchor="middle">Consumer</text><rect x="397" y="126" width="186" height="42" rx="8" fill="#0f766e" /><text x="490" y="153" text-anchor="middle" fill="#fff">API Gateway</text><rect x="397" y="190" width="186" height="42" rx="8" fill="#fff" stroke="#15202b" /><text x="490" y="217" text-anchor="middle">Service Mesh</text><rect x="397" y="254" width="186" height="42" rx="8" fill="#2563eb" /><text x="490" y="281" text-anchor="middle" fill="#fff">Microservices</text>
+              <rect x="722" y="62" width="186" height="42" rx="8" fill="#f4b942" /><text x="815" y="89" text-anchor="middle">Data Source</text><rect x="722" y="126" width="186" height="42" rx="8" fill="#0f766e" /><text x="815" y="153" text-anchor="middle" fill="#fff">Ingestion</text><rect x="722" y="190" width="186" height="42" rx="8" fill="#2563eb" /><text x="815" y="217" text-anchor="middle" fill="#fff">Data Lake</text><rect x="722" y="254" width="186" height="42" rx="8" fill="#15202b" /><text x="815" y="281" text-anchor="middle" fill="#fff">Analytics</text>
+              <g stroke="#15202b" stroke-width="3" marker-end="url(#arrow)"><line x1="165" y1="104" x2="165" y2="126" /><line x1="165" y1="168" x2="165" y2="190" /><line x1="165" y1="232" x2="165" y2="254" /><line x1="165" y1="296" x2="165" y2="318" /><line x1="490" y1="104" x2="490" y2="126" /><line x1="490" y1="168" x2="490" y2="190" /><line x1="490" y1="232" x2="490" y2="254" /><line x1="815" y1="104" x2="815" y2="126" /><line x1="815" y1="168" x2="815" y2="190" /><line x1="815" y1="232" x2="815" y2="254" /></g>
             </g>
           </svg>
         </div>
       </div>
     </section>
 
-    <section id="governance" class="section">
+    <section id="governance" class="section" aria-labelledby="governance-heading">
       <div class="wrap">
-        <h2>Architecture Governance</h2>
-        <p class="section-intro">
-          Security review should become architecture enablement, not an approval gate
-          at the end of delivery.
-        </p>
-
+        <h2 id="governance-heading">Architecture Governance</h2>
+        <p class="section-intro">Security review should become architecture enablement, not an approval gate at the end of delivery.</p>
         <div class="grid">
-          <article class="card">
-            <span class="tag">Idea</span>
-            <h3>Classify</h3>
-            <p>Identify business criticality, data sensitivity, and architecture risk early.</p>
-          </article>
-          <article class="card">
-            <span class="tag">Design</span>
-            <h3>Threat Model</h3>
-            <p>Review trust boundaries, attack paths, data flows, and misuse cases.</p>
-          </article>
-          <article class="card">
-            <span class="tag">Build</span>
-            <h3>Validate</h3>
-            <p>Apply secure coding, dependency checks, secrets scanning, and CI/CD control gates.</p>
-          </article>
-          <article class="card">
-            <span class="tag">Deploy</span>
-            <h3>Verify</h3>
-            <p>Confirm required controls, logging, encryption, and policy compliance before release.</p>
-          </article>
-          <article class="card">
-            <span class="tag">Operate</span>
-            <h3>Monitor</h3>
-            <p>Use SIEM, CSPM, compliance scanning, drift detection, and response automation.</p>
-          </article>
-          <article class="card">
-            <span class="tag">Improve</span>
-            <h3>Assure</h3>
-            <p>Continuously refine patterns, guardrails, and reference architectures from lessons learned.</p>
-          </article>
+          <article class="card"><span class="tag">Idea</span><h3>Classify</h3><p>Identify business criticality, data sensitivity, and architecture risk early.</p></article>
+          <article class="card"><span class="tag">Design</span><h3>Threat Model</h3><p>Review trust boundaries, attack paths, data flows, and misuse cases.</p></article>
+          <article class="card"><span class="tag">Build</span><h3>Validate</h3><p>Apply secure coding, dependency checks, secrets scanning, and CI/CD control gates.</p></article>
+          <article class="card"><span class="tag">Deploy</span><h3>Verify</h3><p>Confirm required controls, logging, encryption, and policy compliance before release.</p></article>
+          <article class="card"><span class="tag">Operate</span><h3>Monitor</h3><p>Use SIEM, CSPM, compliance scanning, drift detection, and response automation.</p></article>
+          <article class="card"><span class="tag">Improve</span><h3>Assure</h3><p>Continuously refine patterns, guardrails, and reference architectures from lessons learned.</p></article>
         </div>
       </div>
     </section>
 
-    <section id="resources" class="section">
+    <section id="resources" class="section" aria-labelledby="resources-heading">
       <div class="wrap">
-        <h2>Helpful Sublinks</h2>
-        <p class="section-intro">
-          Useful external references for standards, cloud architecture, secure software,
-          and governance mapping.
-        </p>
-
+        <h2 id="resources-heading">Helpful Sublinks</h2>
+        <p class="section-intro">Useful external references for standards, cloud architecture, secure software, and governance mapping.</p>
         <div class="resource-list">
-          <a class="resource" href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener">
-            <strong>NIST Cybersecurity Framework</strong>
-            <span>Govern, identify, protect, detect, respond, and recover.</span>
-          </a>
-          <a class="resource" href="https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final" target="_blank" rel="noopener">
-            <strong>NIST SP 800-53</strong>
-            <span>Security and privacy control catalog.</span>
-          </a>
-          <a class="resource" href="https://www.cisecurity.org/controls" target="_blank" rel="noopener">
-            <strong>CIS Controls</strong>
-            <span>Prioritized safeguards for enterprise security.</span>
-          </a>
-          <a class="resource" href="https://www.cyber.gov.au/resources-business-and-government/essential-cyber-security/essential-eight" target="_blank" rel="noopener">
-            <strong>Essential Eight</strong>
-            <span>Australian baseline mitigation strategies.</span>
-          </a>
-          <a class="resource" href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener">
-            <strong>OWASP Top 10</strong>
-            <span>Application security risks and guidance.</span>
-          </a>
-          <a class="resource" href="https://www.cisa.gov/securebydesign" target="_blank" rel="noopener">
-            <strong>CISA Secure by Design</strong>
-            <span>Secure product and service principles.</span>
-          </a>
+          <a class="resource" href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener noreferrer"><strong>NIST Cybersecurity Framework</strong><span>Govern, identify, protect, detect, respond, and recover.</span></a>
+          <a class="resource" href="https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final" target="_blank" rel="noopener noreferrer"><strong>NIST SP 800-53</strong><span>Security and privacy control catalog.</span></a>
+          <a class="resource" href="https://www.cisecurity.org/controls" target="_blank" rel="noopener noreferrer"><strong>CIS Controls</strong><span>Prioritized safeguards for enterprise security.</span></a>
+          <a class="resource" href="https://www.cyber.gov.au/resources-business-and-government/essential-cyber-security/essential-eight" target="_blank" rel="noopener noreferrer"><strong>Essential Eight</strong><span>Australian baseline mitigation strategies.</span></a>
+          <a class="resource" href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener noreferrer"><strong>OWASP Top 10</strong><span>Application security risks and guidance.</span></a>
+          <a class="resource" href="https://www.cisa.gov/securebydesign" target="_blank" rel="noopener noreferrer"><strong>CISA Secure by Design</strong><span>Secure product and service principles.</span></a>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="wrap">
-      <p>Security Whisperer &copy; 2026. Practical architecture notes for calm, capable security work.</p>
-    </div>
+    <div class="wrap"><p>Security Whisperer &copy; 2026. Practical architecture notes for calm, capable security work.</p></div>
   </footer>
 </body>
 </html>
